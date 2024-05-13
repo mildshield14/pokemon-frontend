@@ -1,7 +1,6 @@
 <template>
     <div>
-      <h1>API Data</h1>
-      <h2>Choose a pokemon for player{{ selectedPlayer }}</h2>
+      <h1>Double click to choose a pokemon for player{{ selectedPlayer }}!</h1>
       <div class="container-pokemon">
 
         <div class="pokemon-list">
@@ -56,7 +55,7 @@
       const view = ref<'player-selection' | 'pokemon-selection'>('player-selection');
       const data = ref<any>([]);
       const current_page = ref(1);
-      const items_per_page = 8;
+      const items_per_page = 6;
       let selectedCardId=ref<number | null>(null);
       //let previouslySelectedElement: HTMLElement | null = null;
       const selectedPlayer = ref<number>(Number(localStorage.getItem('selectedPlayer')));
@@ -181,22 +180,18 @@
 
   <style>
 
-  html{
-    padding:20px;
-    margin:0;
-  }
-
   p{
     position: relative;
   }
 
   .cards{
+    text-align: center;
     border:1px solid;
     position: relative;
     transition: transform 0.8s;
     transform-style: preserve-3d;
     margin-bottom: 20px;
-    width: 200px;
+    width: 40%;
     margin:20px;
   }
 
@@ -208,7 +203,8 @@
     padding-left:90px;
   }
 
-  .container-pokemon{
+  h1{
+    text-align: center;
   }
 
 
@@ -227,7 +223,7 @@
     transform: rotateY(180deg);
   }
 
-  .pagination{
+  .pagination-controls{
     display: flex;
     justify-content: center;
     margin-top:20px;
@@ -249,8 +245,6 @@
   .pokemonbutton:disabled {
     cursor: not-allowed;
   }
-
-
 
   .selected{
     border: 2px solid gold;

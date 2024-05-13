@@ -10,6 +10,7 @@
           <p class="pokemon-info pokemon-hp">HP: {{ getPokemon(i).hp }}</p>
         </div>
       </div>
+      <h2 class="special-attack">Special Attack loading</h2>
       <h2 class="winner" v-if="winner">{{ winner }} wins!</h2>
       <button v-if="winner" @click="resetGame">Play Again</button>
 
@@ -18,7 +19,7 @@
 
 
   <script lang="ts">
-  import {defineComponent, ref} from 'vue';
+  import {defineComponent, onMounted, ref} from 'vue';
   export default defineComponent({
     name: 'Game',
 
@@ -61,11 +62,14 @@
         const attacktype = localStorage.getItem("selectedPlayer" + attackerNumber.toString() + "Attack")
         const damage = calculateDamage(attacktype)
         const newDefenderHP = Math.max(defender.hp - damage, 0);  // histoire d'eviter les -ve
-
+        const element:HTMLElement=<HTMLElement>document.querySelector(".special-attack");
+        element.style.display="none";
         // Check if the game should continue
         if (currentRound.value === maxRounds) {
           endGame(attackerNumber);
         } else if (attacktype === "special" && wait === 0) {
+          const element:HTMLElement=<HTMLElement>document.querySelector(".special-attack");
+          element.style.display="block";
           wait = 1
           turn += 1
           currentPlayer.value = defenderNumber;
@@ -113,6 +117,11 @@
         // reset local storage
       }
 
+      onMounted(() => {
+        const element: HTMLElement = <HTMLElement>document.querySelector(".special-attack");
+        element.style.display = "none";
+      })
+
       function resetGame() {
         currentRound.value = 1;
         currentPlayer.value = 1;
@@ -136,12 +145,16 @@
 
 
 <style scoped>
+html{
+  padding:0;
+  margin:0;
+}
+
 .game-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 1000px;
   min-width: 500px;
   margin: 20px;
   padding: 20px;

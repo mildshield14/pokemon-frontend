@@ -1,4 +1,5 @@
 <template>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <main class="maincontainer">
     <!-- Player Selection View -->
     <Players
@@ -155,9 +156,11 @@ function startGame() {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  min-width: 100px;
   border:1px solid wheat;
   padding: 20px;
 }
+
 
 button {
   background: linear-gradient(to bottom right, #56887D, #2c3e50);

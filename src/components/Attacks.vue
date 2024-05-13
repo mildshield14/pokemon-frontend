@@ -1,6 +1,7 @@
 <template>
-    <div>
-      <h2>Choose an Attack Type</h2>
+    <div class="attack">
+      <h1>Choose an Attack Type</h1>
+      <br>
       <div class="attack-type-buttons">
         <button
           :class="{ selected: selectedAttackType === 'normal' }"
@@ -12,7 +13,9 @@
           @click="setAttackType('special')">
           Special Attack
         </button>
+
       </div>
+      <br>
     </div>
   </template>
 
